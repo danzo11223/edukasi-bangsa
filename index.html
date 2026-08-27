@@ -24,8 +24,6 @@
       min-height: 100vh;
     }
 
-    /* HEADER */
-
     .navbar {
       width: 100%;
       height: 72px;
@@ -67,8 +65,6 @@
       font-size: 11px;
       margin-top: 3px;
     }
-
-    /* HERO */
 
     .hero {
       min-height: 340px;
@@ -115,8 +111,6 @@
       line-height: 1.6;
     }
 
-    /* SEARCH */
-
     .search-box {
       width: min(620px, 100%);
       margin-top: 27px;
@@ -145,8 +139,6 @@
       color: white;
       font-size: 14px;
     }
-
-    /* CONTENT */
 
     .container {
       width: min(1450px, 94%);
@@ -178,8 +170,6 @@
       font-weight: bold;
       white-space: nowrap;
     }
-
-    /* VIDEO GRID */
 
     .video-grid {
       display: grid;
@@ -214,11 +204,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: 0.3s;
-    }
-
-    .video-card:hover .thumbnail img {
-      transform: scale(1.04);
     }
 
     .play-button {
@@ -235,7 +220,6 @@
       background: rgba(255, 45, 141, 0.93);
       font-size: 19px;
       opacity: 0;
-      transition: 0.2s;
     }
 
     .video-card:hover .play-button {
@@ -252,7 +236,6 @@
       font-size: 10px;
       font-weight: bold;
       margin-bottom: 6px;
-      letter-spacing: 0.4px;
     }
 
     .video-info h3 {
@@ -266,22 +249,6 @@
       font-size: 11px;
       line-height: 1.4;
     }
-
-    /* EMPTY */
-
-    .empty {
-      display: none;
-      padding: 70px 15px;
-      text-align: center;
-      color: #777;
-    }
-
-    .empty h3 {
-      color: white;
-      margin-bottom: 7px;
-    }
-
-    /* PAGINATION */
 
     .pagination {
       display: flex;
@@ -300,24 +267,12 @@
       cursor: pointer;
     }
 
-    .pagination button:hover:not(:disabled) {
-      color: #ff2d8d;
-      border-color: #ff2d8d;
-    }
-
-    .pagination button:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
     #pageInfo {
       min-width: 110px;
       text-align: center;
       color: #888;
       font-size: 12px;
     }
-
-    /* WATCH PAGE */
 
     .watch-page {
       display: none;
@@ -338,12 +293,6 @@
       cursor: pointer;
     }
 
-    .back-button:hover {
-      color: #ff2d8d;
-    }
-
-    /* PAID PROMOTE SLOT */
-
     .ad-slot {
       width: 100%;
       min-height: 90px;
@@ -352,7 +301,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
       background: #0f0f0f;
       border: 1px dashed #292929;
       border-radius: 10px;
@@ -362,7 +310,6 @@
       color: #ff2d8d;
       font-size: 9px;
       font-weight: bold;
-      letter-spacing: 1px;
     }
 
     .ad-slot p {
@@ -370,8 +317,6 @@
       color: #555;
       font-size: 10px;
     }
-
-    /* PLAYER */
 
     .player-container {
       width: 100%;
@@ -410,8 +355,6 @@
       font-size: 13px;
     }
 
-    /* TELEGRAM KECIL */
-
     .telegram-contact {
       margin-top: 30px;
       padding: 18px 0;
@@ -428,10 +371,6 @@
       font-size: 11px;
     }
 
-    .telegram-contact a:hover {
-      color: #ff2d8d;
-    }
-
     .telegram-logo {
       width: 22px;
       height: 22px;
@@ -444,18 +383,7 @@
       font-size: 11px;
     }
 
-    footer {
-      padding: 30px;
-      text-align: center;
-      color: #555;
-      border-top: 1px solid #1d1d1d;
-      font-size: 11px;
-    }
-
-    /* MOBILE */
-
     @media (max-width: 700px) {
-
       .navbar {
         height: 62px;
         padding: 0 10px;
@@ -465,10 +393,6 @@
         width: 40px;
         height: 40px;
         font-size: 13px;
-      }
-
-      .brand {
-        gap: 8px;
       }
 
       .brand h1 {
@@ -484,11 +408,6 @@
         padding: 30px 12px;
       }
 
-      .hero-badge {
-        font-size: 8px;
-        margin-bottom: 12px;
-      }
-
       .hero h2 {
         font-size: 26px;
       }
@@ -497,45 +416,14 @@
         font-size: 11px;
       }
 
-      .search-box {
-        margin-top: 20px;
-        padding: 2px 12px;
-      }
-
-      .search-box input {
-        padding: 10px 3px;
-        font-size: 11px;
-      }
-
       .container {
         width: 100%;
         padding: 25px 6px 55px;
       }
 
-      .section-header {
-        padding: 0 3px;
-        margin-bottom: 13px;
-      }
-
-      .section-header h2 {
-        font-size: 16px;
-      }
-
-      .section-header p {
-        font-size: 8px;
-      }
-
-      .video-count {
-        font-size: 8px;
-      }
-
       .video-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 5px;
-      }
-
-      .video-card {
-        border-radius: 7px;
       }
 
       .thumbnail {
@@ -561,30 +449,10 @@
       .video-info h3 {
         font-size: 10px;
         margin: 0;
-        line-height: 1.25;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
       }
 
       .video-info p {
         display: none;
-      }
-
-      .pagination {
-        gap: 5px;
-        margin-top: 22px;
-      }
-
-      .pagination button {
-        padding: 8px;
-        font-size: 9px;
-      }
-
-      #pageInfo {
-        min-width: 82px;
-        font-size: 8px;
       }
 
       .watch-container {
@@ -592,22 +460,9 @@
         padding-top: 16px;
       }
 
-      .watch-info h1 {
-        font-size: 20px;
-      }
-
       .ad-slot {
         min-height: 70px;
         margin: 10px 0;
-      }
-
-      .telegram-contact {
-        margin-top: 20px;
-        padding: 14px 0;
-      }
-
-      .telegram-contact a {
-        font-size: 10px;
       }
     }
   </style>
@@ -621,22 +476,16 @@
 
     <header class="navbar">
       <div class="brand">
-
-        <div class="logo">
-          EB
-        </div>
-
+        <div class="logo">EB</div>
         <div>
           <h1>EDUKASI BANGSA</h1>
           <p>Video • Informasi • Edukasi</p>
         </div>
-
       </div>
     </header>
 
 
     <section class="hero">
-
       <div class="hero-badge">
         EDUKASI BANGSA
       </div>
@@ -651,12 +500,8 @@
         Jelajahi koleksi video terbaru dan temukan konten yang ingin kamu tonton.
       </p>
 
-
       <div class="search-box">
-
-        <span class="search-icon">
-          🔍
-        </span>
+        <span class="search-icon">🔍</span>
 
         <input
           id="searchInput"
@@ -664,16 +509,13 @@
           placeholder="Cari judul video..."
           autocomplete="off"
         >
-
       </div>
-
     </section>
 
 
     <main class="container">
 
       <div class="section-header">
-
         <div>
           <h2>Video Terbaru</h2>
           <p>Pilihan terbaru dari Edukasi Bangsa</p>
@@ -683,7 +525,6 @@
           id="videoCount"
           class="video-count">
         </div>
-
       </div>
 
 
@@ -693,18 +534,7 @@
       </div>
 
 
-      <div
-        id="emptySearch"
-        class="empty">
-
-        <h3>Video tidak ditemukan</h3>
-        <p>Coba cari dengan kata lain.</p>
-
-      </div>
-
-
       <div class="pagination">
-
         <button id="prevButton">
           ← Sebelumnya
         </button>
@@ -714,40 +544,28 @@
         <button id="nextButton">
           Berikutnya →
         </button>
-
       </div>
 
     </main>
 
-
-    <footer>
-      © 2026 Edukasi Bangsa
-    </footer>
-
   </div>
 
 
-  <!-- WATCH PAGE -->
+  <!-- WATCH -->
 
   <div
     id="watchPage"
     class="watch-page">
 
     <header class="navbar">
-
       <div class="brand">
-
-        <div class="logo">
-          EB
-        </div>
+        <div class="logo">EB</div>
 
         <div>
           <h1>EDUKASI BANGSA</h1>
           <p>Video • Informasi • Edukasi</p>
         </div>
-
       </div>
-
     </header>
 
 
@@ -755,49 +573,32 @@
 
       <div
         class="back-button"
-        onclick="kembaliKeHome()">
+        onclick="window.history.back()">
 
         ← Kembali ke semua video
 
       </div>
 
 
-      <!-- PAID PROMOTE ATAS -->
-
       <div class="ad-slot">
-
         <span>PAID PROMOTE</span>
-
-        <p>
-          Slot promosi tersedia
-        </p>
-
+        <p>Slot promosi tersedia</p>
       </div>
 
 
-      <!-- VIDEO PLAYER -->
-
       <div class="player-container">
-
         <video
           id="videoPlayer"
           controls
           playsinline>
         </video>
-
       </div>
 
 
-      <!-- INFORMASI VIDEO -->
-
       <div class="watch-info">
 
-        <div
-          id="watchCategory"
-          class="category">
-
+        <div class="category">
           EDUKASI
-
         </div>
 
         <h1 id="watchTitle"></h1>
@@ -807,28 +608,18 @@
       </div>
 
 
-      <!-- PAID PROMOTE BAWAH -->
-
       <div class="ad-slot">
-
         <span>PAID PROMOTE</span>
-
-        <p>
-          Slot promosi tersedia
-        </p>
-
+        <p>Slot promosi tersedia</p>
       </div>
 
-
-      <!-- TELEGRAM PALING BAWAH -->
 
       <div class="telegram-contact">
 
         <a
           href="https://t.me/danzo_xx"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
 
           <span class="telegram-logo">
             ✈
@@ -846,8 +637,6 @@
 
 
   <script>
-
-    /* DAFTAR VIDEO */
 
     const videos = [
 
@@ -873,116 +662,10 @@
         description: "Video pilihan dari Edukasi Bangsa.",
         thumbnail: "thumbnails/video3.jpg",
         file: "videos/video3.mp4"
-      },
-
-      {
-        id: 4,
-        title: "Video Keempat",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video4.jpg",
-        file: "videos/video4.mp4"
-      },
-
-      {
-        id: 5,
-        title: "Video Kelima",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video5.jpg",
-        file: "videos/video5.mp4"
-      },
-
-      {
-        id: 6,
-        title: "Video Keenam",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video6.jpg",
-        file: "videos/video6.mp4"
-      },
-
-      {
-        id: 7,
-        title: "Video Ketujuh",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video7.jpg",
-        file: "videos/video7.mp4"
-      },
-
-      {
-        id: 8,
-        title: "Video Kedelapan",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video8.jpg",
-        file: "videos/video8.mp4"
-      },
-
-      {
-        id: 9,
-        title: "Video Kesembilan",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video9.jpg",
-        file: "videos/video9.mp4"
-      },
-
-      {
-        id: 10,
-        title: "Video Kesepuluh",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video10.jpg",
-        file: "videos/video10.mp4"
-      },
-
-      {
-        id: 11,
-        title: "Video Kesebelas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video11.jpg",
-        file: "videos/video11.mp4"
-      },
-
-      {
-        id: 12,
-        title: "Video Kedua Belas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video12.jpg",
-        file: "videos/video12.mp4"
-      },
-
-      {
-        id: 13,
-        title: "Video Ketiga Belas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video13.jpg",
-        file: "videos/video13.mp4"
-      },
-
-      {
-        id: 14,
-        title: "Video Keempat Belas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video14.jpg",
-        file: "videos/video14.mp4"
-      },
-
-      {
-        id: 15,
-        title: "Video Kelima Belas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video15.jpg",
-        file: "videos/video15.mp4"
-      },
-
-      {
-        id: 16,
-        title: "Video Keenam Belas",
-        description: "Video pilihan dari Edukasi Bangsa.",
-        thumbnail: "thumbnails/video16.jpg",
-        file: "videos/video16.mp4"
       }
 
     ];
 
-
-    /* ELEMENT */
 
     const videoGrid =
       document.getElementById("videoGrid");
@@ -992,9 +675,6 @@
 
     const videoCount =
       document.getElementById("videoCount");
-
-    const emptySearch =
-      document.getElementById("emptySearch");
 
     const prevButton =
       document.getElementById("prevButton");
@@ -1013,8 +693,6 @@
     let currentVideos = videos;
 
 
-    /* TAMPILKAN VIDEO */
-
     function tampilkanVideo(data) {
 
       currentVideos = data;
@@ -1025,9 +703,6 @@
           Math.ceil(data.length / VIDEOS_PER_PAGE)
         );
 
-      if (currentPage > totalPages) {
-        currentPage = totalPages;
-      }
 
       const start =
         (currentPage - 1) * VIDEOS_PER_PAGE;
@@ -1035,32 +710,15 @@
       const end =
         start + VIDEOS_PER_PAGE;
 
+
       const videosHalaman =
         data.slice(start, end);
+
 
       videoGrid.innerHTML = "";
 
       videoCount.textContent =
         data.length + " video";
-
-
-      if (data.length === 0) {
-
-        emptySearch.style.display =
-          "block";
-
-        pageInfo.textContent = "";
-
-        prevButton.disabled = true;
-
-        nextButton.disabled = true;
-
-        return;
-      }
-
-
-      emptySearch.style.display =
-        "none";
 
 
       videosHalaman.forEach(video => {
@@ -1071,6 +729,7 @@
         card.className =
           "video-card";
 
+
         card.innerHTML = `
 
           <div class="thumbnail">
@@ -1078,7 +737,6 @@
             <img
               src="${video.thumbnail}"
               alt="${video.title}"
-              loading="lazy"
             >
 
             <div class="play-button">
@@ -1086,7 +744,6 @@
             </div>
 
           </div>
-
 
           <div class="video-info">
 
@@ -1111,10 +768,15 @@
           "click",
           function() {
 
-            bukaVideo(
-              video.id,
-              true
-            );
+            /*
+              INI YANG MEMBUAT
+              BROWSER BENAR-BENAR
+              PINDAH / LOADING
+            */
+
+            window.location.href =
+              "?watch=" +
+              video.id;
 
           }
         );
@@ -1130,16 +792,14 @@
 
 
       prevButton.disabled =
-        currentPage === 1;
+        currentPage <= 1;
 
 
       nextButton.disabled =
-        currentPage === totalPages;
+        currentPage >= totalPages;
 
     }
 
-
-    /* PREVIOUS */
 
     prevButton.addEventListener(
       "click",
@@ -1151,18 +811,11 @@
 
           tampilkanVideo(currentVideos);
 
-          window.scrollTo({
-            top: 250,
-            behavior: "smooth"
-          });
-
         }
 
       }
     );
 
-
-    /* NEXT */
 
     nextButton.addEventListener(
       "click",
@@ -1181,18 +834,11 @@
 
           tampilkanVideo(currentVideos);
 
-          window.scrollTo({
-            top: 250,
-            behavior: "smooth"
-          });
-
         }
 
       }
     );
 
-
-    /* SEARCH */
 
     searchInput.addEventListener(
       "input",
@@ -1205,23 +851,19 @@
 
 
         const hasil =
-          videos.filter(video => {
+          videos.filter(video =>
 
-            return (
+            video.title
+              .toLowerCase()
+              .includes(keyword)
 
-              video.title
-                .toLowerCase()
-                .includes(keyword)
+            ||
 
-              ||
+            video.description
+              .toLowerCase()
+              .includes(keyword)
 
-              video.description
-                .toLowerCase()
-                .includes(keyword)
-
-            );
-
-          });
+          );
 
 
         currentPage = 1;
@@ -1232,115 +874,79 @@
     );
 
 
-    /* BUKA VIDEO */
+    /*
+      CEK URL
+      CONTOH:
+      ?watch=2
+    */
 
-    function bukaVideo(
-      id,
-      tambahHistory = true
-    ) {
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const watchId =
+      Number(
+        params.get("watch")
+      );
+
+
+    if (watchId) {
 
       const video =
         videos.find(
-          item => item.id === id
+          item =>
+            item.id === watchId
         );
 
 
-      if (!video) {
-        return;
+      if (video) {
+
+        document.getElementById(
+          "homePage"
+        ).style.display =
+          "none";
+
+
+        document.getElementById(
+          "watchPage"
+        ).style.display =
+          "block";
+
+
+        document.getElementById(
+          "videoPlayer"
+        ).src =
+          video.file;
+
+
+        document.getElementById(
+          "watchTitle"
+        ).textContent =
+          video.title;
+
+
+        document.getElementById(
+          "watchDescription"
+        ).textContent =
+          video.description;
+
+
+        document.title =
+          video.title +
+          " - Edukasi Bangsa";
+
       }
 
+    }
 
-      if (tambahHistory) {
-
-        history.pushState(
-          {
-            page: "watch",
-            videoId: id
-          },
-          "",
-          "#video-" + id
-        );
-
-      }
-
+    else {
 
       document.getElementById(
         "homePage"
       ).style.display =
-        "none";
-
-
-      document.getElementById(
-        "watchPage"
-      ).style.display =
         "block";
-
-
-      const player =
-        document.getElementById(
-          "videoPlayer"
-        );
-
-
-      player.src =
-        video.file;
-
-
-      document.getElementById(
-        "watchTitle"
-      ).textContent =
-        video.title;
-
-
-      document.getElementById(
-        "watchDescription"
-      ).textContent =
-        video.description;
-
-
-      document.getElementById(
-        "watchCategory"
-      ).textContent =
-        "EDUKASI";
-
-
-      document.title =
-        video.title +
-        " - Edukasi Bangsa";
-
-
-      window.scrollTo(
-        0,
-        0
-      );
-
-    }
-
-
-    /* BACK */
-
-    function kembaliKeHome() {
-
-      history.back();
-
-    }
-
-
-    /* HOME */
-
-    function tampilkanHome() {
-
-      const player =
-        document.getElementById(
-          "videoPlayer"
-        );
-
-
-      player.pause();
-
-      player.removeAttribute("src");
-
-      player.load();
 
 
       document.getElementById(
@@ -1349,66 +955,9 @@
         "none";
 
 
-      document.getElementById(
-        "homePage"
-      ).style.display =
-        "block";
-
-
-      document.title =
-        "Edukasi Bangsa";
-
-
-      window.scrollTo(
-        0,
-        0
-      );
+      tampilkanVideo(videos);
 
     }
-
-
-    /* BACK HP */
-
-    window.addEventListener(
-      "popstate",
-      function(event) {
-
-        if (
-          event.state &&
-          event.state.page === "watch"
-        ) {
-
-          bukaVideo(
-            event.state.videoId,
-            false
-          );
-
-        }
-
-        else {
-
-          tampilkanHome();
-
-        }
-
-      }
-    );
-
-
-    /* STATE AWAL */
-
-    history.replaceState(
-      {
-        page: "home"
-      },
-      "",
-      window.location.pathname
-    );
-
-
-    /* START */
-
-    tampilkanVideo(videos);
 
   </script>
 
