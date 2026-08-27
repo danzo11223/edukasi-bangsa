@@ -49,8 +49,8 @@
       width: 46px;
       height: 46px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       border-radius: 13px;
       background: linear-gradient(135deg, #ff1478, #ff4fa0);
       font-weight: bold;
@@ -332,7 +332,7 @@
 
     .back-button {
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: #aaa;
       font-size: 13px;
       cursor: pointer;
@@ -341,6 +341,37 @@
     .back-button:hover {
       color: #ff2d8d;
     }
+
+    /* PAID PROMOTE SLOT */
+
+    .ad-slot {
+      width: 100%;
+      min-height: 90px;
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #0f0f0f;
+      border: 1px dashed #292929;
+      border-radius: 10px;
+    }
+
+    .ad-slot span {
+      color: #ff2d8d;
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .ad-slot p {
+      margin-top: 5px;
+      color: #555;
+      font-size: 10px;
+    }
+
+    /* PLAYER */
 
     .player-container {
       width: 100%;
@@ -379,41 +410,38 @@
       font-size: 13px;
     }
 
-    /* PAID PROMOTE CONTACT */
+    /* TELEGRAM KECIL */
 
-    .promote-contact {
+    .telegram-contact {
       margin-top: 30px;
-      padding: 22px;
-      background: #111;
-      border: 1px solid #252525;
-      border-radius: 14px;
+      padding: 18px 0;
+      text-align: center;
+      border-top: 1px solid #1c1c1c;
     }
 
-    .promote-contact h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .promote-contact p {
-      color: #888;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    .telegram-button {
-      display: inline-block;
-      padding: 11px 17px;
-      border-radius: 9px;
-      background: #ff2d8d;
-      color: white;
+    .telegram-contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #aaa;
       text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-      transition: 0.2s;
+      font-size: 11px;
     }
 
-    .telegram-button:hover {
-      opacity: 0.85;
+    .telegram-contact a:hover {
+      color: #ff2d8d;
+    }
+
+    .telegram-logo {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #229ed9;
+      color: white;
+      font-size: 11px;
     }
 
     footer {
@@ -550,7 +578,7 @@
       }
 
       .pagination button {
-        padding: 8px 8px;
+        padding: 8px;
         font-size: 9px;
       }
 
@@ -568,23 +596,18 @@
         font-size: 20px;
       }
 
-      .promote-contact {
-        margin-top: 22px;
-        padding: 16px;
+      .ad-slot {
+        min-height: 70px;
+        margin: 10px 0;
       }
 
-      .promote-contact h3 {
-        font-size: 15px;
+      .telegram-contact {
+        margin-top: 20px;
+        padding: 14px 0;
       }
 
-      .promote-contact p {
-        font-size: 11px;
-      }
-
-      .telegram-button {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
+      .telegram-contact a {
+        font-size: 10px;
       }
     }
   </style>
@@ -739,6 +762,21 @@
       </div>
 
 
+      <!-- PAID PROMOTE ATAS -->
+
+      <div class="ad-slot">
+
+        <span>PAID PROMOTE</span>
+
+        <p>
+          Slot promosi tersedia
+        </p>
+
+      </div>
+
+
+      <!-- VIDEO PLAYER -->
+
       <div class="player-container">
 
         <video
@@ -750,12 +788,16 @@
       </div>
 
 
+      <!-- INFORMASI VIDEO -->
+
       <div class="watch-info">
 
         <div
           id="watchCategory"
           class="category">
+
           EDUKASI
+
         </div>
 
         <h1 id="watchTitle"></h1>
@@ -765,23 +807,35 @@
       </div>
 
 
-      <!-- PAID PROMOTE -->
+      <!-- PAID PROMOTE BAWAH -->
 
-      <div class="promote-contact">
+      <div class="ad-slot">
 
-        <h3>Ingin Paid Promote?</h3>
+        <span>PAID PROMOTE</span>
 
         <p>
-          Hubungi kami melalui Telegram untuk informasi promosi dan kerja sama.
+          Slot promosi tersedia
         </p>
 
+      </div>
+
+
+      <!-- TELEGRAM PALING BAWAH -->
+
+      <div class="telegram-contact">
+
         <a
-          class="telegram-button"
           href="https://t.me/danzo_xx"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Hubungi Telegram
+
+          <span class="telegram-logo">
+            ✈
+          </span>
+
+          Telegram
+
         </a>
 
       </div>
@@ -793,9 +847,7 @@
 
   <script>
 
-    /* =========================
-       DAFTAR VIDEO
-    ========================= */
+    /* DAFTAR VIDEO */
 
     const videos = [
 
@@ -954,8 +1006,6 @@
       document.getElementById("pageInfo");
 
 
-    /* 15 VIDEO PER HALAMAN */
-
     const VIDEOS_PER_PAGE = 15;
 
     let currentPage = 1;
@@ -1002,6 +1052,7 @@
         pageInfo.textContent = "";
 
         prevButton.disabled = true;
+
         nextButton.disabled = true;
 
         return;
@@ -1036,6 +1087,7 @@
 
           </div>
 
+
           <div class="video-info">
 
             <span class="video-category">
@@ -1054,6 +1106,7 @@
 
         `;
 
+
         card.addEventListener(
           "click",
           function() {
@@ -1066,6 +1119,7 @@
           }
         );
 
+
         videoGrid.appendChild(card);
 
       });
@@ -1074,8 +1128,10 @@
       pageInfo.textContent =
         `Halaman ${currentPage} dari ${totalPages}`;
 
+
       prevButton.disabled =
         currentPage === 1;
+
 
       nextButton.disabled =
         currentPage === totalPages;
@@ -1118,6 +1174,7 @@
             VIDEOS_PER_PAGE
           );
 
+
         if (currentPage < totalPages) {
 
           currentPage++;
@@ -1146,10 +1203,12 @@
             .toLowerCase()
             .trim();
 
+
         const hasil =
           videos.filter(video => {
 
             return (
+
               video.title
                 .toLowerCase()
                 .includes(keyword)
@@ -1159,9 +1218,11 @@
               video.description
                 .toLowerCase()
                 .includes(keyword)
+
             );
 
           });
+
 
         currentPage = 1;
 
@@ -1183,9 +1244,11 @@
           item => item.id === id
         );
 
+
       if (!video) {
         return;
       }
+
 
       if (tambahHistory) {
 
@@ -1203,18 +1266,21 @@
 
       document.getElementById(
         "homePage"
-      ).style.display = "none";
+      ).style.display =
+        "none";
 
 
       document.getElementById(
         "watchPage"
-      ).style.display = "block";
+      ).style.display =
+        "block";
 
 
       const player =
         document.getElementById(
           "videoPlayer"
         );
+
 
       player.src =
         video.file;
@@ -1251,7 +1317,7 @@
     }
 
 
-    /* KEMBALI */
+    /* BACK */
 
     function kembaliKeHome() {
 
@@ -1260,7 +1326,7 @@
     }
 
 
-    /* TAMPILKAN HOME */
+    /* HOME */
 
     function tampilkanHome() {
 
@@ -1268,6 +1334,7 @@
         document.getElementById(
           "videoPlayer"
         );
+
 
       player.pause();
 
