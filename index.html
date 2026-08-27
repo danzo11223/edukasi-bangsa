@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edukasi Bangsa</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      width: 100%;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      padding: 0 6%;
+      background: #0c0c0c;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #ff1478, #ff4fa0);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 25px rgba(255, 20, 120, 0.25);
+    }
+
+    .brand h1 {
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .brand p {
+      margin-top: 3px;
+      font-size: 11px;
+      color: #777;
+    }
+
+    .hero {
+      min-height: 370px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 20, 120, 0.22),
+          transparent 45%
+        ),
+        #080808;
+    }
+
+    .hero-badge {
+      padding: 8px 15px;
+      border: 1px solid rgba(255, 45, 141, 0.35);
+      border-radius: 30px;
+      background: rgba(255, 45, 141, 0.08);
+      color: #ff4d9d;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-size: clamp(34px, 5vw, 56px);
+      max-width: 850px;
+      line-height: 1.1;
+    }
+
+    .pink {
+      color: #ff2d8d;
+    }
+
+    .hero > p {
+      margin-top: 15px;
+      max-width: 600px;
+      color: #999;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .search-box {
+      width: min(650px, 100%);
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      padding: 5px 20px;
+      background: #141414;
+      border: 1px solid #292929;
+      border-radius: 50px;
+    }
+
+    .search-box:focus-within {
+      border-color: #ff2d8d;
+    }
+
+    .search-icon {
+      color: #ff2d8d;
+      margin-right: 10px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 5px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+      font-size: 15px;
+    }
+
+    .container {
+      width: min(1400px, 90%);
+      margin: auto;
+      padding: 45px 0 80px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .section-header h2 {
+      font-size: 25px;
+    }
+
+    .section-header p {
+      color: #777;
+      margin-top: 7px;
+      font-size: 13px;
+    }
+
+    .video-count {
+      color: #ff2d8d;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .video-card {
+      background: #111;
+      border: 1px solid #202020;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      border-color: #ff2d8d;
+    }
+
+    .thumbnail {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #191919;
+      overflow: hidden;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .video-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 45, 141, 0.92);
+      opacity: 0;
+      transition: 0.25s;
+    }
+
+    .video-card:hover .play-button {
+      opacity: 1;
+    }
+
+    .video-info {
+      padding: 16px;
+    }
+
+    .video-category {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #ff2d8d;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .video-info h3 {
+      margin-bottom: 7px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .video-info p {
+      color: #777;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 70px 20px;
+      color: #777;
+    }
+
+    .empty h3 {
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .watch-page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .watch-container {
+      width: min(1200px, 92%);
+      margin: auto;
+      padding: 35px 0 80px;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 25px;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .back-button:hover {
+      color: #ff2d8d;
+    }
+
+    .player-container {
+      width: 100%;
+      background: black;
+      border: 1px solid #222;
+      border-radius: 17px;
+      overflow: hidden;
+    }
+
+    .player-container video {
+      width: 100%;
+      max-height: 75vh;
+      display: block;
+      background: black;
+    }
+
+    .watch-info {
+      padding-top: 25px;
+    }
+
+    .watch-info .category {
+      color: #ff2d8d;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .watch-info h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .watch-info p {
+      color: #888;
+      line-height: 1.6;
+    }
+
+    footer {
+      padding: 35px;
+      text-align: center;
+      border-top: 1px solid #1d1d1d;
+      color: #555;
+      font-size: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .brand h1 {
+        font-size: 16px;
+      }
+
+      .hero {
+        min-height: 330px;
+      }
+
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .play-button {
+        opacity: 1;
+        width: 43px;
+        height: 43px;
+      }
+
+      .video-info p {
+        display: none;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="homePage">
+
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo">EB</div>
+
+      <div>
+        <h1>EDUKASI BANGSA</h1>
+        <p>Video • Informasi • Edukasi</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-badge">
+      EDUKASI BANGSA
+    </div>
+
+    <h2>
+      Temukan Video
+      <span class="pink">Pilihan</span>
+      Untukmu
+    </h2>
+
+    <p>
+      Jelajahi koleksi video terbaru dan
+      temukan konten yang ingin kamu tonton.
+    </p>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Cari judul video..."
+        autocomplete="off"
+      >
+    </div>
+
+  </section>
+
+  <main class="container">
+
+    <div class="section-header">
+
+      <div>
+        <h2>Video Terbaru</h2>
+        <p>Pilihan terbaru dari Edukasi Bangsa</p>
+      </div>
+
+      <div
+        id="videoCount"
+        class="video-count">
+      </div>
+
+    </div>
+
+    <div
+      id="videoGrid"
+      class="video-grid">
+    </div>
+
+    <div
+      id="emptySearch"
+      class="empty">
+
+      <h3>Video tidak ditemukan</h3>
+      <p>Coba cari dengan kata lain.</p>
+
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Edukasi Bangsa
+  </footer>
+
+</div>
+
+
+<div
+  id="watchPage"
+  class="watch-page">
+
+  <header class="navbar">
+
+    <div class="brand">
+
+      <div class="logo">EB</div>
+
+      <div>
+        <h1>EDUKASI BANGSA</h1>
+        <p>Video • Informasi • Edukasi</p>
+      </div>
+
+    </div>
+
+  </header>
+
+  <div class="watch-container">
+
+    <div
+      class="back-button"
+      onclick="kembaliKeHome()">
+
+      ← Kembali ke semua video
+
+    </div>
+
+    <div class="player-container">
+
+      <video
+        id="videoPlayer"
+        controls
+        playsinline>
+      </video>
+
+    </div>
+
+    <div class="watch-info">
+
+      <div
+        id="watchCategory"
+        class="category">
+      </div>
+
+      <h1 id="watchTitle"></h1>
+
+      <p id="watchDescription"></p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   TAMBAH / EDIT VIDEO DI BAGIAN INI
+===================================== */
+
+const videos = [
+
+  {
+    id: 1,
+    title: "Video Pertama",
+    description: "Video pilihan dari Edukasi Bangsa.",
+    category: "Edukasi",
+    thumbnail: "thumbnails/video1.jpg",
+    file: "videos/video1.mp4"
+  },
+
+  {
+    id: 2,
+    title: "Video Kedua",
+    description: "Video terbaru untuk kamu.",
+    category: "Informasi",
+    thumbnail: "thumbnails/video2.jpg",
+    file: "videos/video2.mp4"
+  },
+
+  {
+    id: 3,
+    title: "Video Ketiga",
+    description: "Konten pilihan Edukasi Bangsa.",
+    category: "Pilihan",
+    thumbnail: "thumbnails/video3.jpg",
+    file: "videos/video3.mp4"
+  },
+
+  {
+    id: 4,
+    title: "Video Keempat",
+    description: "Deskripsi video keempat.",
+    category: "Edukasi",
+    thumbnail: "thumbnails/video4.jpg",
+    file: "videos/video4.mp4"
+  }
+
+];
+
+
+/* =====================================
+   SISTEM WEBSITE
+===================================== */
+
+const videoGrid =
+  document.getElementById("videoGrid");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const videoCount =
+  document.getElementById("videoCount");
+
+const emptySearch =
+  document.getElementById("emptySearch");
+
+
+function tampilkanVideo(data) {
+
+  videoGrid.innerHTML = "";
+
+  videoCount.textContent =
+    data.length + " video";
+
+  if (data.length === 0) {
+    emptySearch.style.display = "block";
+    return;
+  }
+
+  emptySearch.style.display = "none";
+
+
+  data.forEach(video => {
+
+    const card =
+      document.createElement("article");
+
+    card.className =
+      "video-card";
+
+
+    card.innerHTML = `
+
+      <div class="thumbnail">
+
+        <img
+          src="${video.thumbnail}"
+          alt="${video.title}"
+          loading="lazy"
+        >
+
+        <div class="play-button">
+          ▶
+        </div>
+
+      </div>
+
+      <div class="video-info">
+
+        <span class="video-category">
+          ${video.category}
+        </span>
+
+        <h3>
+          ${video.title}
+        </h3>
+
+        <p>
+          ${video.description}
+        </p>
+
+      </div>
+
+    `;
+
+
+    card.addEventListener(
+      "click",
+      function() {
+
+        bukaVideo(video.id);
+
+      }
+    );
+
+
+    videoGrid.appendChild(card);
+
+  });
+
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
+
+searchInput.addEventListener(
+  "input",
+  function() {
+
+    const keyword =
+      searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+    const hasil =
+      videos.filter(video => {
+
+        return (
+
+          video.title
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          video.description
+            .toLowerCase()
+            .includes(keyword)
+
+          ||
+
+          video.category
+            .toLowerCase()
+            .includes(keyword)
+
+        );
+
+      });
+
+
+    tampilkanVideo(hasil);
+
+  }
+);
+
+
+/* =====================================
+   BUKA VIDEO
+===================================== */
+
+function bukaVideo(id) {
+
+  const video =
+    videos.find(
+      item => item.id === id
+    );
+
+
+  if (!video) {
+    return;
+  }
+
+
+  document.getElementById(
+    "homePage"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "watchPage"
+  ).style.display =
+    "block";
+
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
+    );
+
+
+  player.src =
+    video.file;
+
+
+  document.getElementById(
+    "watchTitle"
+  ).textContent =
+    video.title;
+
+
+  document.getElementById(
+    "watchDescription"
+  ).textContent =
+    video.description;
+
+
+  document.getElementById(
+    "watchCategory"
+  ).textContent =
+    video.category;
+
+
+  document.title =
+    video.title +
+    " - Edukasi Bangsa";
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+}
+
+
+/* =====================================
+   KEMBALI
+===================================== */
+
+function kembaliKeHome() {
+
+  const player =
+    document.getElementById(
+      "videoPlayer"
+    );
+
+
+  player.pause();
+
+  player.removeAttribute("src");
+
+  player.load();
+
+
+  document.getElementById(
+    "watchPage"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "homePage"
+  ).style.display =
+    "block";
+
+
+  document.title =
+    "Edukasi Bangsa";
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+}
+
+
+/* =====================================
+   MULAI WEBSITE
+===================================== */
+
+tampilkanVideo(videos);
+
+</script>
+
+</body>
+</html>
