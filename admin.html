@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Edukasi Bangsa</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#080808;
+  color:white;
+  font-family:Arial,sans-serif;
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  font-size:22px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:#777;
+  font-size:12px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:#111;
+  border:1px solid #252525;
+  border-radius:15px;
+  padding:18px;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  margin-bottom:7px;
+  font-size:12px;
+  color:#aaa;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:13px;
+  background:#090909;
+  border:1px solid #333;
+  border-radius:9px;
+  color:white;
+  outline:none;
+}
+
+input:focus,
+textarea:focus{
+  border-color:#ff2d8d;
+}
+
+textarea{
+  height:90px;
+  resize:none;
+}
+
+.file-box{
+  padding:15px;
+  background:#0b0b0b;
+  border:1px dashed #444;
+  border-radius:9px;
+}
+
+button{
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#ff2d8d;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.5;
+}
+
+.progress{
+  display:none;
+  margin-top:20px;
+}
+
+.progress-bg{
+  width:100%;
+  height:9px;
+  background:#222;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:#ff2d8d;
+  transition:.2s;
+}
+
+#status{
+  margin-top:10px;
+  color:#aaa;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.success{
+  color:#43d17d !important;
+}
+
+.error{
+  color:#ff5b5b !important;
+}
+
+.preview{
+  width:100%;
+  margin-top:10px;
+  border-radius:8px;
+  display:none;
+}
+
+.logo{
+  width:45px;
+  height:45px;
+  background:#ff2d8d;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">
+    EB
+  </div>
+
+  <h1>Admin Edukasi Bangsa</h1>
+
+  <div class="subtitle">
+    Upload video dari HP
+  </div>
+
+  <div class="card">
+
+    <label>
+      Judul Video
+    </label>
+
+    <input
+      id="title"
+      type="text"
+      placeholder="Masukkan judul video"
+    >
+
+
+    <label>
+      Catatan Video
+    </label>
+
+    <textarea
+      id="description"
+      placeholder="Masukkan catatan video"
+    ></textarea>
+
+
+    <label>
+      Thumbnail
+    </label>
+
+    <div class="file-box">
+
+      <input
+        id="thumbnail"
+        type="file"
+        accept="image/*"
+      >
+
+      <img
+        id="preview"
+        class="preview"
+      >
+
+    </div>
+
+
+    <label>
+      Video
+    </label>
+
+    <div class="file-box">
+
+      <input
+        id="video"
+        type="file"
+        accept="video/*"
+      >
+
+    </div>
+
+
+    <button id="uploadButton">
+      UPLOAD VIDEO
+    </button>
+
+
+    <div
+      id="progress"
+      class="progress">
+
+      <div class="progress-bg">
+
+        <div
+          id="progressBar"
+          class="progress-bar">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="status"></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   CLOUDINARY
+========================= */
+
+const CLOUD_NAME =
+  "oefzencm";
+
+const UPLOAD_PRESET =
+  "unggahan-bangsa-edukasi";
+
+
+/* =========================
+   ELEMENT
+========================= */
+
+const titleInput =
+  document.getElementById("title");
+
+const descriptionInput =
+  document.getElementById("description");
+
+const thumbnailInput =
+  document.getElementById("thumbnail");
+
+const videoInput =
+  document.getElementById("video");
+
+const uploadButton =
+  document.getElementById("uploadButton");
+
+const statusText =
+  document.getElementById("status");
+
+const progress =
+  document.getElementById("progress");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const preview =
+  document.getElementById("preview");
+
+
+/* =========================
+   PREVIEW THUMBNAIL
+========================= */
+
+thumbnailInput.addEventListener(
+  "change",
+  function(){
+
+    const file =
+      thumbnailInput.files[0];
+
+    if(!file){
+      return;
+    }
+
+    preview.src =
+      URL.createObjectURL(file);
+
+    preview.style.display =
+      "block";
+
+  }
+);
+
+
+/* =========================
+   UPLOAD CLOUDINARY
+========================= */
+
+function uploadCloudinary(
+  file,
+  resourceType,
+  onProgress
+){
+
+  return new Promise(
+    function(resolve,reject){
+
+      const url =
+        "https://api.cloudinary.com/v1_1/"
+        + CLOUD_NAME
+        + "/"
+        + resourceType
+        + "/upload";
+
+
+      const formData =
+        new FormData();
+
+      formData.append(
+        "file",
+        file
+      );
+
+      formData.append(
+        "upload_preset",
+        UPLOAD_PRESET
+      );
+
+
+      const xhr =
+        new XMLHttpRequest();
+
+
+      xhr.open(
+        "POST",
+        url
+      );
+
+
+      xhr.upload.addEventListener(
+        "progress",
+        function(event){
+
+          if(
+            event.lengthComputable
+            &&
+            onProgress
+          ){
+
+            const percent =
+              Math.round(
+                event.loaded /
+                event.total *
+                100
+              );
+
+            onProgress(percent);
+
+          }
+
+        }
+      );
+
+
+      xhr.onload =
+        function(){
+
+          if(
+            xhr.status >= 200
+            &&
+            xhr.status < 300
+          ){
+
+            try{
+
+              resolve(
+                JSON.parse(
+                  xhr.responseText
+                )
+              );
+
+            }
+
+            catch(error){
+
+              reject(error);
+
+            }
+
+          }
+
+          else{
+
+            reject(
+              new Error(
+                xhr.responseText
+              )
+            );
+
+          }
+
+        };
+
+
+      xhr.onerror =
+        function(){
+
+          reject(
+            new Error(
+              "Koneksi upload gagal."
+            )
+          );
+
+        };
+
+
+      xhr.send(formData);
+
+    }
+  );
+
+}
+
+
+/* =========================
+   TOMBOL UPLOAD
+========================= */
+
+uploadButton.addEventListener(
+  "click",
+  async function(){
+
+    const title =
+      titleInput.value.trim();
+
+    const description =
+      descriptionInput.value.trim();
+
+    const thumbnail =
+      thumbnailInput.files[0];
+
+    const video =
+      videoInput.files[0];
+
+
+    if(!title){
+
+      alert(
+        "Judul video belum diisi."
+      );
+
+      return;
+
+    }
+
+
+    if(!thumbnail){
+
+      alert(
+        "Pilih thumbnail dulu."
+      );
+
+      return;
+
+    }
+
+
+    if(!video){
+
+      alert(
+        "Pilih video dulu."
+      );
+
+      return;
+
+    }
+
+
+    uploadButton.disabled =
+      true;
+
+    progress.style.display =
+      "block";
+
+    progressBar.style.width =
+      "0%";
+
+    statusText.className =
+      "";
+
+    statusText.textContent =
+      "Mengupload thumbnail...";
+
+
+    try{
+
+
+      /* THUMBNAIL */
+
+      const thumbnailResult =
+        await uploadCloudinary(
+          thumbnail,
+          "image"
+        );
+
+
+      statusText.textContent =
+        "Thumbnail berhasil. Mengupload video...";
+
+
+      /* VIDEO */
+
+      const videoResult =
+        await uploadCloudinary(
+          video,
+          "video",
+          function(percent){
+
+            progressBar.style.width =
+              percent + "%";
+
+            statusText.textContent =
+              "Mengupload video... "
+              + percent
+              + "%";
+
+          }
+        );
+
+
+      progressBar.style.width =
+        "100%";
+
+
+      statusText.className =
+        "success";
+
+
+      statusText.innerHTML =
+
+        "UPLOAD BERHASIL!<br><br>" +
+
+        "Judul: "
+        + title
+        + "<br>" +
+
+        "Thumbnail berhasil disimpan.<br>" +
+
+        "Video berhasil disimpan.";
+
+
+      /*
+        DATA INI NANTI KITA
+        SAMBUNGKAN KE WEBSITE
+      */
+
+      const videoData = {
+
+        title:
+          title,
+
+        description:
+          description,
+
+        thumbnail:
+          thumbnailResult.secure_url,
+
+        file:
+          videoResult.secure_url
+
+      };
+
+
+      console.log(
+        "DATA VIDEO:",
+        videoData
+      );
+
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      statusText.className =
+        "error";
+
+      statusText.textContent =
+        "Upload gagal. "
+        + error.message;
+
+    }
+
+
+    uploadButton.disabled =
+      false;
+
+  }
+);
+
+</script>
+
+</body>
+</html>
