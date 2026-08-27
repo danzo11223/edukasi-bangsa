@@ -24,22 +24,16 @@
       min-height: 100vh;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* HEADER */
 
     .navbar {
       width: 100%;
       height: 72px;
-
       display: flex;
       align-items: center;
-
       padding: 0 5%;
-
       background: #0d0d0d;
       border-bottom: 1px solid #222;
-
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -54,19 +48,11 @@
     .logo {
       width: 46px;
       height: 46px;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       border-radius: 13px;
-
-      background: linear-gradient(
-        135deg,
-        #ff1478,
-        #ff4fa0
-      );
-
+      background: linear-gradient(135deg, #ff1478, #ff4fa0);
       font-weight: bold;
       color: white;
     }
@@ -82,22 +68,16 @@
       margin-top: 3px;
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       min-height: 340px;
-
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       text-align: center;
-
       padding: 50px 20px;
-
       background:
         radial-gradient(
           circle at top,
@@ -109,17 +89,12 @@
 
     .hero-badge {
       padding: 7px 14px;
-
       border: 1px solid rgba(255, 45, 141, 0.35);
       border-radius: 30px;
-
       background: rgba(255, 45, 141, 0.08);
-
       color: #ff4d9d;
-
       font-size: 11px;
       font-weight: bold;
-
       margin-bottom: 18px;
     }
 
@@ -134,31 +109,21 @@
 
     .hero p {
       margin-top: 14px;
-
       max-width: 600px;
-
       color: #999;
       font-size: 14px;
-
       line-height: 1.6;
     }
 
-    /* =========================
-       SEARCH
-    ========================= */
+    /* SEARCH */
 
     .search-box {
       width: min(620px, 100%);
-
       margin-top: 27px;
-
       display: flex;
       align-items: center;
-
       padding: 4px 18px;
-
       background: #151515;
-
       border: 1px solid #2c2c2c;
       border-radius: 50px;
     }
@@ -173,27 +138,19 @@
 
     .search-box input {
       width: 100%;
-
       padding: 13px 5px;
-
       background: transparent;
-
       border: none;
       outline: none;
-
       color: white;
       font-size: 14px;
     }
 
-    /* =========================
-       CONTENT
-    ========================= */
+    /* CONTENT */
 
     .container {
       width: min(1450px, 94%);
-
       margin: auto;
-
       padding: 38px 0 70px;
     }
 
@@ -201,9 +158,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 15px;
-
       margin-bottom: 20px;
     }
 
@@ -213,43 +168,31 @@
 
     .section-header p {
       margin-top: 5px;
-
       color: #777;
       font-size: 12px;
     }
 
     .video-count {
       color: #ff2d8d;
-
       font-size: 12px;
       font-weight: bold;
-
       white-space: nowrap;
     }
 
-    /* =========================
-       VIDEO GRID DESKTOP
-    ========================= */
+    /* VIDEO GRID */
 
     .video-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(auto-fill, minmax(250px, 1fr));
-
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
     }
 
     .video-card {
       background: #111;
-
       border: 1px solid #222;
       border-radius: 13px;
-
       overflow: hidden;
-
       cursor: pointer;
-
       transition: 0.25s;
     }
 
@@ -260,24 +203,17 @@
 
     .thumbnail {
       width: 100%;
-
       position: relative;
-
       aspect-ratio: 16 / 9;
-
       background: #191919;
-
       overflow: hidden;
     }
 
     .thumbnail img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       display: block;
-
       transition: 0.3s;
     }
 
@@ -288,26 +224,17 @@
     .play-button {
       width: 52px;
       height: 52px;
-
       position: absolute;
-
       top: 50%;
       left: 50%;
-
       transform: translate(-50%, -50%);
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 50%;
-
       background: rgba(255, 45, 141, 0.93);
-
       font-size: 19px;
-
       opacity: 0;
-
       transition: 0.2s;
     }
 
@@ -321,76 +248,55 @@
 
     .video-category {
       display: block;
-
       color: #ff2d8d;
-
       font-size: 10px;
       font-weight: bold;
-
       margin-bottom: 6px;
-
       letter-spacing: 0.4px;
     }
 
     .video-info h3 {
       font-size: 15px;
       line-height: 1.35;
-
       margin-bottom: 5px;
     }
 
     .video-info p {
       color: #777;
-
       font-size: 11px;
-
       line-height: 1.4;
     }
 
-    /* =========================
-       EMPTY SEARCH
-    ========================= */
+    /* EMPTY */
 
     .empty {
       display: none;
-
       padding: 70px 15px;
-
       text-align: center;
-
       color: #777;
     }
 
     .empty h3 {
       color: white;
-
       margin-bottom: 7px;
     }
 
-    /* =========================
-       PAGINATION
-    ========================= */
+    /* PAGINATION */
 
     .pagination {
       display: flex;
       align-items: center;
       justify-content: center;
-
       gap: 12px;
-
       margin-top: 30px;
     }
 
     .pagination button {
       padding: 10px 14px;
-
       border: 1px solid #333;
       border-radius: 8px;
-
       background: #151515;
-
       color: white;
-
       cursor: pointer;
     }
 
@@ -406,41 +312,29 @@
 
     #pageInfo {
       min-width: 110px;
-
       text-align: center;
-
       color: #888;
-
       font-size: 12px;
     }
 
-    /* =========================
-       WATCH PAGE
-    ========================= */
+    /* WATCH PAGE */
 
     .watch-page {
       display: none;
-
       min-height: 100vh;
     }
 
     .watch-container {
       width: min(1200px, 94%);
-
       margin: auto;
-
       padding: 30px 0 70px;
     }
 
     .back-button {
       display: inline-block;
-
       margin-bottom: 20px;
-
       color: #aaa;
-
       font-size: 13px;
-
       cursor: pointer;
     }
 
@@ -450,22 +344,16 @@
 
     .player-container {
       width: 100%;
-
       overflow: hidden;
-
       border-radius: 14px;
       border: 1px solid #222;
-
       background: black;
     }
 
     .player-container video {
       width: 100%;
-
       max-height: 75vh;
-
       display: block;
-
       background: black;
     }
 
@@ -475,56 +363,79 @@
 
     .watch-info .category {
       color: #ff2d8d;
-
       font-size: 11px;
       font-weight: bold;
-
       margin-bottom: 8px;
     }
 
     .watch-info h1 {
       font-size: 27px;
-
       margin-bottom: 9px;
     }
 
     .watch-info p {
       color: #888;
-
       line-height: 1.6;
-
       font-size: 13px;
+    }
+
+    /* PAID PROMOTE CONTACT */
+
+    .promote-contact {
+      margin-top: 30px;
+      padding: 22px;
+      background: #111;
+      border: 1px solid #252525;
+      border-radius: 14px;
+    }
+
+    .promote-contact h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .promote-contact p {
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .telegram-button {
+      display: inline-block;
+      padding: 11px 17px;
+      border-radius: 9px;
+      background: #ff2d8d;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .telegram-button:hover {
+      opacity: 0.85;
     }
 
     footer {
       padding: 30px;
-
       text-align: center;
-
       color: #555;
-
       border-top: 1px solid #1d1d1d;
-
       font-size: 11px;
     }
 
-    /* =========================
-       MOBILE
-       3 PER BARIS
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
       .navbar {
         height: 62px;
-
         padding: 0 10px;
       }
 
       .logo {
         width: 40px;
         height: 40px;
-
         font-size: 13px;
       }
 
@@ -542,13 +453,11 @@
 
       .hero {
         min-height: 245px;
-
         padding: 30px 12px;
       }
 
       .hero-badge {
         font-size: 8px;
-
         margin-bottom: 12px;
       }
 
@@ -562,26 +471,21 @@
 
       .search-box {
         margin-top: 20px;
-
         padding: 2px 12px;
       }
 
       .search-box input {
         padding: 10px 3px;
-
         font-size: 11px;
       }
 
       .container {
         width: 100%;
-
-        padding:
-          25px 6px 55px;
+        padding: 25px 6px 55px;
       }
 
       .section-header {
         padding: 0 3px;
-
         margin-bottom: 13px;
       }
 
@@ -597,22 +501,14 @@
         font-size: 8px;
       }
 
-      /* 3 THUMBNAIL KE KANAN */
-
       .video-grid {
-        grid-template-columns:
-          repeat(3, minmax(0, 1fr));
-
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 5px;
       }
 
       .video-card {
         border-radius: 7px;
       }
-
-      /*
-        THUMBNAIL DIBUAT LEBIH BESAR/TINGGI
-      */
 
       .thumbnail {
         aspect-ratio: 4 / 3;
@@ -621,9 +517,7 @@
       .play-button {
         width: 29px;
         height: 29px;
-
         opacity: 1;
-
         font-size: 10px;
       }
 
@@ -631,29 +525,18 @@
         padding: 6px;
       }
 
-      /*
-        SEMUA LABEL PINK = EDUKASI
-      */
-
       .video-category {
         font-size: 7px;
-
         margin-bottom: 3px;
       }
 
       .video-info h3 {
         font-size: 10px;
-
         margin: 0;
-
         line-height: 1.25;
-
         display: -webkit-box;
-
         -webkit-line-clamp: 2;
-
         -webkit-box-orient: vertical;
-
         overflow: hidden;
       }
 
@@ -663,30 +546,45 @@
 
       .pagination {
         gap: 5px;
-
         margin-top: 22px;
       }
 
       .pagination button {
         padding: 8px 8px;
-
         font-size: 9px;
       }
 
       #pageInfo {
         min-width: 82px;
-
         font-size: 8px;
       }
 
       .watch-container {
         width: 96%;
-
         padding-top: 16px;
       }
 
       .watch-info h1 {
         font-size: 20px;
+      }
+
+      .promote-contact {
+        margin-top: 22px;
+        padding: 16px;
+      }
+
+      .promote-contact h3 {
+        font-size: 15px;
+      }
+
+      .promote-contact p {
+        font-size: 11px;
+      }
+
+      .telegram-button {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
       }
     }
   </style>
@@ -699,7 +597,6 @@
   <div id="homePage">
 
     <header class="navbar">
-
       <div class="brand">
 
         <div class="logo">
@@ -712,7 +609,6 @@
         </div>
 
       </div>
-
     </header>
 
 
@@ -724,9 +620,7 @@
 
       <h2>
         Temukan Video
-        <span class="pink">
-          Pilihan
-        </span>
+        <span class="pink">Pilihan</span>
         Untukmu
       </h2>
 
@@ -781,10 +675,7 @@
         class="empty">
 
         <h3>Video tidak ditemukan</h3>
-
-        <p>
-          Coba cari dengan kata lain.
-        </p>
+        <p>Coba cari dengan kata lain.</p>
 
       </div>
 
@@ -864,14 +755,34 @@
         <div
           id="watchCategory"
           class="category">
-
           EDUKASI
-
         </div>
 
         <h1 id="watchTitle"></h1>
 
         <p id="watchDescription"></p>
+
+      </div>
+
+
+      <!-- PAID PROMOTE -->
+
+      <div class="promote-contact">
+
+        <h3>Ingin Paid Promote?</h3>
+
+        <p>
+          Hubungi kami melalui Telegram untuk informasi promosi dan kerja sama.
+        </p>
+
+        <a
+          class="telegram-button"
+          href="t.me/danzo_xx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hubungi Telegram
+        </a>
 
       </div>
 
@@ -882,13 +793,9 @@
 
   <script>
 
-    /*
-      =================================
-      DAFTAR VIDEO
-
-      TAMBAH VIDEO DI SINI
-      =================================
-    */
+    /* =========================
+       DAFTAR VIDEO
+    ========================= */
 
     const videos = [
 
@@ -1023,9 +930,7 @@
     ];
 
 
-    /* =========================
-       ELEMENT
-    ========================= */
+    /* ELEMENT */
 
     const videoGrid =
       document.getElementById("videoGrid");
@@ -1049,10 +954,7 @@
       document.getElementById("pageInfo");
 
 
-    /*
-      3 x 5
-      = 15 VIDEO PER HALAMAN
-    */
+    /* 15 VIDEO PER HALAMAN */
 
     const VIDEOS_PER_PAGE = 15;
 
@@ -1061,43 +963,32 @@
     let currentVideos = videos;
 
 
-    /* =========================
-       TAMPILKAN VIDEO
-    ========================= */
+    /* TAMPILKAN VIDEO */
 
     function tampilkanVideo(data) {
 
       currentVideos = data;
 
-
       const totalPages =
         Math.max(
           1,
-          Math.ceil(
-            data.length / VIDEOS_PER_PAGE
-          )
+          Math.ceil(data.length / VIDEOS_PER_PAGE)
         );
-
 
       if (currentPage > totalPages) {
         currentPage = totalPages;
       }
 
-
       const start =
         (currentPage - 1) * VIDEOS_PER_PAGE;
-
 
       const end =
         start + VIDEOS_PER_PAGE;
 
-
       const videosHalaman =
         data.slice(start, end);
 
-
       videoGrid.innerHTML = "";
-
 
       videoCount.textContent =
         data.length + " video";
@@ -1108,14 +999,10 @@
         emptySearch.style.display =
           "block";
 
-        pageInfo.textContent =
-          "";
+        pageInfo.textContent = "";
 
-        prevButton.disabled =
-          true;
-
-        nextButton.disabled =
-          true;
+        prevButton.disabled = true;
+        nextButton.disabled = true;
 
         return;
       }
@@ -1130,10 +1017,8 @@
         const card =
           document.createElement("article");
 
-
         card.className =
           "video-card";
-
 
         card.innerHTML = `
 
@@ -1150,7 +1035,6 @@
             </div>
 
           </div>
-
 
           <div class="video-info">
 
@@ -1170,7 +1054,6 @@
 
         `;
 
-
         card.addEventListener(
           "click",
           function() {
@@ -1183,7 +1066,6 @@
           }
         );
 
-
         videoGrid.appendChild(card);
 
       });
@@ -1192,10 +1074,8 @@
       pageInfo.textContent =
         `Halaman ${currentPage} dari ${totalPages}`;
 
-
       prevButton.disabled =
         currentPage === 1;
-
 
       nextButton.disabled =
         currentPage === totalPages;
@@ -1203,9 +1083,7 @@
     }
 
 
-    /* =========================
-       PREVIOUS
-    ========================= */
+    /* PREVIOUS */
 
     prevButton.addEventListener(
       "click",
@@ -1228,9 +1106,7 @@
     );
 
 
-    /* =========================
-       NEXT
-    ========================= */
+    /* NEXT */
 
     nextButton.addEventListener(
       "click",
@@ -1241,7 +1117,6 @@
             currentVideos.length /
             VIDEOS_PER_PAGE
           );
-
 
         if (currentPage < totalPages) {
 
@@ -1260,9 +1135,7 @@
     );
 
 
-    /* =========================
-       SEARCH
-    ========================= */
+    /* SEARCH */
 
     searchInput.addEventListener(
       "input",
@@ -1272,7 +1145,6 @@
           searchInput.value
             .toLowerCase()
             .trim();
-
 
         const hasil =
           videos.filter(video => {
@@ -1291,7 +1163,6 @@
 
           });
 
-
         currentPage = 1;
 
         tampilkanVideo(hasil);
@@ -1300,9 +1171,7 @@
     );
 
 
-    /* =========================
-       BUKA VIDEO
-    ========================= */
+    /* BUKA VIDEO */
 
     function bukaVideo(
       id,
@@ -1314,11 +1183,9 @@
           item => item.id === id
         );
 
-
       if (!video) {
         return;
       }
-
 
       if (tambahHistory) {
 
@@ -1336,21 +1203,18 @@
 
       document.getElementById(
         "homePage"
-      ).style.display =
-        "none";
+      ).style.display = "none";
 
 
       document.getElementById(
         "watchPage"
-      ).style.display =
-        "block";
+      ).style.display = "block";
 
 
       const player =
         document.getElementById(
           "videoPlayer"
         );
-
 
       player.src =
         video.file;
@@ -1367,11 +1231,6 @@
       ).textContent =
         video.description;
 
-
-      /*
-        SEMUA VIDEO
-        TULISANNYA EDUKASI
-      */
 
       document.getElementById(
         "watchCategory"
@@ -1392,9 +1251,7 @@
     }
 
 
-    /* =========================
-       BACK BUTTON WEBSITE
-    ========================= */
+    /* KEMBALI */
 
     function kembaliKeHome() {
 
@@ -1403,9 +1260,7 @@
     }
 
 
-    /* =========================
-       HOME
-    ========================= */
+    /* TAMPILKAN HOME */
 
     function tampilkanHome() {
 
@@ -1413,7 +1268,6 @@
         document.getElementById(
           "videoPlayer"
         );
-
 
       player.pause();
 
@@ -1446,9 +1300,7 @@
     }
 
 
-    /* =========================
-       BACK HP / BROWSER
-    ========================= */
+    /* BACK HP */
 
     window.addEventListener(
       "popstate",
@@ -1476,9 +1328,7 @@
     );
 
 
-    /* =========================
-       STATE AWAL
-    ========================= */
+    /* STATE AWAL */
 
     history.replaceState(
       {
@@ -1489,9 +1339,7 @@
     );
 
 
-    /* =========================
-       START
-    ========================= */
+    /* START */
 
     tampilkanVideo(videos);
 
