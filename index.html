@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Edukasi Bangsa</title>
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='140' fill='%23ff2d8d'/%3E%3Ctext x='256' y='310' text-anchor='middle' font-family='Arial' font-size='190' font-weight='700' fill='white'%3EEB%3C/text%3E%3C/svg%3E">
 
   <style>
     * {
@@ -518,6 +520,205 @@
       font-size: 11px;
     }
 
+
+    /* ===== LIKE / DISLIKE ===== */
+    .watch-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .watch-action-button {
+      border: 1px solid #2b2b2b;
+      background: #151515;
+      color: #ddd;
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: 0.2s;
+    }
+
+    .watch-action-button:hover {
+      border-color: #ff2d8d;
+      color: white;
+    }
+
+    .watch-action-button.active {
+      color: #ff69ad;
+      border-color: #ff2d8d;
+      background: rgba(255, 45, 141, 0.10);
+    }
+
+    /* ===== REKOMENDASI ===== */
+    .recommend-section {
+      margin-top: 30px;
+      border-top: 1px solid #1c1c1c;
+      padding-top: 24px;
+    }
+
+    .recommend-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .recommend-heading h2 {
+      font-size: 20px;
+    }
+
+    .recommend-heading p {
+      color: #666;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+
+    .autoplay-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #888;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .recommend-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .recommend-card {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 11px;
+      padding: 9px;
+      background: #101010;
+      border: 1px solid #202020;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .recommend-card:hover {
+      border-color: #ff2d8d;
+      transform: translateY(-2px);
+    }
+
+    .recommend-thumb {
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #191919;
+    }
+
+    .recommend-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .recommend-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .recommend-info .recommend-label {
+      color: #ff2d8d;
+      font-size: 8px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .recommend-info h3 {
+      font-size: 13px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .recommend-info p {
+      color: #666;
+      margin-top: 5px;
+      font-size: 10px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ===== NEXT VIDEO OVERLAY ===== */
+    .next-video-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.78);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .next-video-box {
+      width: min(420px, 100%);
+      padding: 24px;
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .next-video-box .next-label {
+      color: #ff2d8d;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .next-video-box h3 {
+      margin-top: 8px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .next-video-box p {
+      margin-top: 8px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    .next-video-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .next-video-buttons button {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #333;
+      border-radius: 9px;
+      background: #181818;
+      color: white;
+      cursor: pointer;
+    }
+
+    .next-video-buttons button:last-child {
+      background: #ff2d8d;
+      border-color: #ff2d8d;
+      font-weight: bold;
+    }
+
+
     @media (max-width: 700px) {
       .navbar {
         height: 62px;
@@ -634,6 +835,29 @@
       .watch-info h1 {
         font-size: 20px;
       }
+
+      .watch-actions {
+        gap: 6px;
+      }
+
+      .watch-action-button {
+        padding: 8px 11px;
+        font-size: 10px;
+      }
+
+      .recommend-list {
+        grid-template-columns: 1fr;
+      }
+
+      .recommend-card {
+        grid-template-columns: 42% minmax(0, 1fr);
+        padding: 6px;
+      }
+
+      .recommend-heading h2 {
+        font-size: 17px;
+      }
+
     }
   </style>
 </head>
@@ -836,6 +1060,20 @@
 
         <p id="watchDescription"></p>
 
+        <div class="watch-actions">
+          <button id="likeButton" class="watch-action-button">
+            👍 <span id="likeCount">0</span>
+          </button>
+
+          <button id="dislikeButton" class="watch-action-button">
+            👎 <span id="dislikeCount">0</span>
+          </button>
+
+          <button id="shareButton" class="watch-action-button">
+            ↗ Bagikan
+          </button>
+        </div>
+
       </div>
 
 
@@ -850,6 +1088,32 @@
         </p>
 
       </div>
+
+
+      <!-- REKOMENDASI VIDEO -->
+
+      <section class="recommend-section">
+
+        <div class="recommend-heading">
+
+          <div>
+            <h2>Video lainnya</h2>
+            <p>Rekomendasi yang mirip dengan video ini</p>
+          </div>
+
+          <label class="autoplay-toggle">
+            <input id="autoplayToggle" type="checkbox" checked>
+            Autoplay
+          </label>
+
+        </div>
+
+        <div
+          id="recommendList"
+          class="recommend-list">
+        </div>
+
+      </section>
 
 
       <!-- TELEGRAM -->
@@ -868,6 +1132,43 @@
           Telegram
 
         </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="nextVideoOverlay"
+    class="next-video-overlay">
+
+    <div class="next-video-box">
+
+      <div class="next-label">
+        VIDEO BERIKUTNYA
+      </div>
+
+      <h3 id="nextVideoTitle">
+        Video berikutnya
+      </h3>
+
+      <p>
+        Diputar dalam
+        <strong id="nextCountdown">5</strong>
+        detik
+      </p>
+
+      <div class="next-video-buttons">
+
+        <button id="cancelNextButton">
+          Batalkan
+        </button>
+
+        <button id="playNextButton">
+          Putar sekarang
+        </button>
 
       </div>
 
@@ -897,6 +1198,12 @@
     let currentPage = 1;
 
     const VIDEOS_PER_PAGE = 15;
+
+    let selectedVideo = null;
+
+    let recommendedVideos = [];
+
+    let nextVideoTimer = null;
 
 
     /* =============================================
@@ -929,6 +1236,45 @@
 
     const pageInfo =
       document.getElementById("pageInfo");
+
+    const videoPlayer =
+      document.getElementById("videoPlayer");
+
+    const likeButton =
+      document.getElementById("likeButton");
+
+    const dislikeButton =
+      document.getElementById("dislikeButton");
+
+    const likeCount =
+      document.getElementById("likeCount");
+
+    const dislikeCount =
+      document.getElementById("dislikeCount");
+
+    const shareButton =
+      document.getElementById("shareButton");
+
+    const recommendList =
+      document.getElementById("recommendList");
+
+    const autoplayToggle =
+      document.getElementById("autoplayToggle");
+
+    const nextVideoOverlay =
+      document.getElementById("nextVideoOverlay");
+
+    const nextVideoTitle =
+      document.getElementById("nextVideoTitle");
+
+    const nextCountdown =
+      document.getElementById("nextCountdown");
+
+    const cancelNextButton =
+      document.getElementById("cancelNextButton");
+
+    const playNextButton =
+      document.getElementById("playNextButton");
 
 
     /* =============================================
@@ -1337,6 +1683,9 @@
             String(id)
         );
 
+      selectedVideo =
+        selected;
+
 
       if (!selected) {
 
@@ -1360,10 +1709,14 @@
         "block";
 
 
-      document.getElementById(
-        "videoPlayer"
-      ).src =
+      videoPlayer.src =
         selected.file;
+
+      videoPlayer.poster =
+        selected.thumbnail ||
+        "";
+
+      videoPlayer.load();
 
 
       document.getElementById(
@@ -1385,12 +1738,672 @@
         " - Edukasi Bangsa";
 
 
+      updateReactionUi();
+
+      recommendedVideos =
+        buildRecommendations(
+          selected
+        );
+
+      renderRecommendations(
+        recommendedVideos
+      );
+
+
       window.scrollTo(
         0,
         0
       );
 
     }
+
+
+
+    /* =============================================
+       LIKE / DISLIKE
+
+       Disimpan di browser pengguna (localStorage).
+       Jadi tidak membutuhkan perubahan API.
+    ============================================= */
+
+    function getReactionStorage() {
+
+      try {
+
+        return JSON.parse(
+          localStorage.getItem(
+            "edukasiBangsaReactions"
+          ) || "{}"
+        );
+
+      }
+
+      catch (error) {
+
+        return {};
+
+      }
+
+    }
+
+
+    function saveReactionStorage(data) {
+
+      localStorage.setItem(
+        "edukasiBangsaReactions",
+        JSON.stringify(data)
+      );
+
+    }
+
+
+    function updateReactionUi() {
+
+      if (!selectedVideo) {
+        return;
+      }
+
+
+      const storage =
+        getReactionStorage();
+
+
+      const item =
+        storage[String(selectedVideo.id)] ||
+        {
+          reaction: null,
+          likes: 0,
+          dislikes: 0
+        };
+
+
+      likeCount.textContent =
+        Number(item.likes || 0);
+
+
+      dislikeCount.textContent =
+        Number(item.dislikes || 0);
+
+
+      likeButton.classList.toggle(
+        "active",
+        item.reaction === "like"
+      );
+
+
+      dislikeButton.classList.toggle(
+        "active",
+        item.reaction === "dislike"
+      );
+
+    }
+
+
+    function setReaction(type) {
+
+      if (!selectedVideo) {
+        return;
+      }
+
+
+      const storage =
+        getReactionStorage();
+
+
+      const key =
+        String(selectedVideo.id);
+
+
+      const item =
+        storage[key] ||
+        {
+          reaction: null,
+          likes: 0,
+          dislikes: 0
+        };
+
+
+      if (item.reaction === type) {
+
+        if (type === "like") {
+
+          item.likes =
+            Math.max(
+              0,
+              Number(item.likes || 0) - 1
+            );
+
+        }
+
+        else {
+
+          item.dislikes =
+            Math.max(
+              0,
+              Number(item.dislikes || 0) - 1
+            );
+
+        }
+
+
+        item.reaction =
+          null;
+
+      }
+
+      else {
+
+        if (item.reaction === "like") {
+
+          item.likes =
+            Math.max(
+              0,
+              Number(item.likes || 0) - 1
+            );
+
+        }
+
+
+        if (item.reaction === "dislike") {
+
+          item.dislikes =
+            Math.max(
+              0,
+              Number(item.dislikes || 0) - 1
+            );
+
+        }
+
+
+        if (type === "like") {
+
+          item.likes =
+            Number(item.likes || 0) + 1;
+
+        }
+
+        else {
+
+          item.dislikes =
+            Number(item.dislikes || 0) + 1;
+
+        }
+
+
+        item.reaction =
+          type;
+
+      }
+
+
+      storage[key] =
+        item;
+
+
+      saveReactionStorage(
+        storage
+      );
+
+
+      updateReactionUi();
+
+    }
+
+
+    likeButton.addEventListener(
+      "click",
+      function() {
+
+        setReaction(
+          "like"
+        );
+
+      }
+    );
+
+
+    dislikeButton.addEventListener(
+      "click",
+      function() {
+
+        setReaction(
+          "dislike"
+        );
+
+      }
+    );
+
+
+    /* =============================================
+       SHARE
+    ============================================= */
+
+    shareButton.addEventListener(
+      "click",
+      async function() {
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share({
+              title:
+                selectedVideo
+                  ? selectedVideo.title
+                  : "Edukasi Bangsa",
+
+              url:
+                window.location.href
+            });
+
+          }
+
+          else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+
+            const oldText =
+              shareButton.textContent;
+
+
+            shareButton.textContent =
+              "✓ Link disalin";
+
+
+            setTimeout(
+              function() {
+
+                shareButton.textContent =
+                  oldText;
+
+              },
+              1500
+            );
+
+          }
+
+        }
+
+        catch (error) {
+
+          console.log(
+            "Share dibatalkan",
+            error
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =============================================
+       REKOMENDASI VIDEO MIRIP
+    ============================================= */
+
+    function normalizeWords(value) {
+
+      return String(value || "")
+        .toLowerCase()
+        .replace(
+          /[^a-z0-9\u00C0-\u024F\u1E00-\u1EFF]+/gi,
+          " "
+        )
+        .split(/\s+/)
+        .filter(
+          word =>
+            word.length >= 3
+        );
+
+    }
+
+
+    function getSimilarityScore(
+      candidate,
+      selected
+    ) {
+
+      const selectedWords =
+        new Set(
+          normalizeWords(
+            (selected.title || "") +
+            " " +
+            (selected.description || "")
+          )
+        );
+
+
+      const candidateWords =
+        normalizeWords(
+          (candidate.title || "") +
+          " " +
+          (candidate.description || "")
+        );
+
+
+      let score =
+        0;
+
+
+      candidateWords.forEach(
+        word => {
+
+          if (
+            selectedWords.has(word)
+          ) {
+
+            score += 3;
+
+          }
+
+        }
+      );
+
+
+      const selectedTitleWords =
+        new Set(
+          normalizeWords(
+            selected.title || ""
+          )
+        );
+
+
+      normalizeWords(
+        candidate.title || ""
+      ).forEach(
+        word => {
+
+          if (
+            selectedTitleWords.has(word)
+          ) {
+
+            score += 5;
+
+          }
+
+        }
+      );
+
+
+      return score;
+
+    }
+
+
+    function buildRecommendations(
+      selected
+    ) {
+
+      return videos
+        .filter(
+          video =>
+            String(video.id) !==
+            String(selected.id)
+        )
+        .map(
+          video => ({
+            ...video,
+
+            _score:
+              getSimilarityScore(
+                video,
+                selected
+              )
+          })
+        )
+        .sort(
+          (a, b) => {
+
+            if (
+              b._score !==
+              a._score
+            ) {
+
+              return (
+                b._score -
+                a._score
+              );
+
+            }
+
+
+            return 0;
+
+          }
+        )
+        .slice(
+          0,
+          10
+        );
+
+    }
+
+
+    function renderRecommendations(
+      list
+    ) {
+
+      recommendList.innerHTML =
+        "";
+
+
+      if (!list.length) {
+
+        recommendList.innerHTML =
+          '<div style="color:#666;font-size:12px;">Belum ada video rekomendasi.</div>';
+
+        return;
+
+      }
+
+
+      list.forEach(
+        video => {
+
+          const card =
+            document.createElement(
+              "article"
+            );
+
+
+          card.className =
+            "recommend-card";
+
+
+          card.innerHTML = `
+
+            <div class="recommend-thumb">
+
+              <img
+                src="${escapeAttribute(video.thumbnail || "")}"
+                alt="${escapeAttribute(video.title || "Video")}"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="recommend-info">
+
+              <span class="recommend-label">
+                REKOMENDASI
+              </span>
+
+              <h3>
+                ${escapeHtml(video.title || "Tanpa Judul")}
+              </h3>
+
+              <p>
+                ${escapeHtml(video.description || "")}
+              </p>
+
+            </div>
+
+          `;
+
+
+          card.addEventListener(
+            "click",
+            function() {
+
+              window.location.href =
+                "?watch=" +
+                encodeURIComponent(
+                  video.id
+                );
+
+            }
+          );
+
+
+          recommendList.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =============================================
+       AUTOPLAY VIDEO SELANJUTNYA
+    ============================================= */
+
+    function closeNextVideoOverlay() {
+
+      if (nextVideoTimer) {
+
+        clearInterval(
+          nextVideoTimer
+        );
+
+      }
+
+
+      nextVideoTimer =
+        null;
+
+
+      nextVideoOverlay.style.display =
+        "none";
+
+    }
+
+
+    function playRecommendedVideo() {
+
+      const nextVideo =
+        recommendedVideos[0];
+
+
+      if (!nextVideo) {
+        return;
+      }
+
+
+      window.location.href =
+        "?watch=" +
+        encodeURIComponent(
+          nextVideo.id
+        );
+
+    }
+
+
+    function showNextVideoOverlay() {
+
+      if (
+        !autoplayToggle.checked ||
+        !recommendedVideos.length
+      ) {
+
+        return;
+      }
+
+
+      const nextVideo =
+        recommendedVideos[0];
+
+
+      let seconds =
+        5;
+
+
+      nextVideoTitle.textContent =
+        nextVideo.title ||
+        "Video berikutnya";
+
+
+      nextCountdown.textContent =
+        seconds;
+
+
+      nextVideoOverlay.style.display =
+        "flex";
+
+
+      if (nextVideoTimer) {
+
+        clearInterval(
+          nextVideoTimer
+        );
+
+      }
+
+
+      nextVideoTimer =
+        setInterval(
+          function() {
+
+            seconds--;
+
+
+            nextCountdown.textContent =
+              seconds;
+
+
+            if (
+              seconds <= 0
+            ) {
+
+              closeNextVideoOverlay();
+
+              playRecommendedVideo();
+
+            }
+
+          },
+          1000
+        );
+
+    }
+
+
+    videoPlayer.addEventListener(
+      "ended",
+      showNextVideoOverlay
+    );
+
+
+    cancelNextButton.addEventListener(
+      "click",
+      closeNextVideoOverlay
+    );
+
+
+    playNextButton.addEventListener(
+      "click",
+      function() {
+
+        closeNextVideoOverlay();
+
+        playRecommendedVideo();
+
+      }
+    );
 
 
     /* =============================================
