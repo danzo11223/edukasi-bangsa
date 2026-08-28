@@ -521,6 +521,15 @@
     }
 
 
+
+    .player-container iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+
     .watch-meta-row {
       display: flex;
       align-items: center;
@@ -842,13 +851,14 @@
       <!-- VIDEO -->
 
       <div class="player-container">
-
-        <video
+        <iframe
           id="videoPlayer"
-          controls
-          playsinline>
-        </video>
-
+          src=""
+          loading="lazy"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen
+          style="width:100%;aspect-ratio:16/9;border:0;display:block;">
+        </iframe>
       </div>
 
 
@@ -891,7 +901,7 @@
       <div class="telegram-contact">
 
         <a
-          href="#"
+          href="https//t.me/danzo_xx"
           target="_blank"
           rel="noopener noreferrer">
 
@@ -1416,7 +1426,9 @@
       document.getElementById(
         "videoPlayer"
       ).src =
-        selected.file;
+        selected.embed ||
+        selected.file ||
+        "";
 
 
       document.getElementById(
@@ -1438,6 +1450,7 @@
         " - Edukasi Bangsa";
 
       loadViewCount();
+      registerView();
 
       window.scrollTo(
         0,
@@ -1631,16 +1644,6 @@
       }
 
     }
-
-
-    /*
-      View dihitung saat video
-      benar-benar mulai diputar.
-    */
-    videoPlayer.addEventListener(
-      "play",
-      registerView
-    );
 
 
     /* =============================================
