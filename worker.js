@@ -1,6 +1,3 @@
-const API_URL =
-  "https://edukasi-bangsa-api.edukasiii.workers.dev/api/videos";
-
 const SITE_URL =
   "https://edukasi-bangsa.edukasiii.workers.dev";
 
@@ -27,26 +24,28 @@ function formatLastmod(value) {
   return date.toISOString();
 }
 
-async function fetchVideos() {
-  const response = await fetch(API_URL, {
-    method: "GET",
-    headers: {
-      "Accept": "application/json",
-      "User-Agent": "Edukasi-Bangsa-Sitemap/1.0"
-    }
-  });
+async function fetchVideos(env) {
+  const response = await env.VIDEO_API.fetch(
+    new Request(
+      "https://internal/api/videos",
+      {
+        method: "GET",
+        headers: {
+          "Accept": "application/json"
+        }
+      }
+    )
+  );
 
   if (!response.ok) {
-    const body =
-      await response.text();
+    const body = await response.text();
 
     throw new Error(
       `Video API error ${response.status}: ${body.slice(0, 200)}`
     );
   }
 
-  const data =
-    await response.json();
+  const data = await response.json();
 
   return Array.isArray(data)
     ? data
@@ -56,6 +55,7 @@ async function fetchVideos() {
 function buildXml(videos) {
   const entries = [];
 
+  // Homepage
   entries.push(`
   <url>
     <loc>${escapeXml(SITE_URL + "/")}</loc>
@@ -63,12 +63,13 @@ function buildXml(videos) {
     <priority>1.0</priority>
   </url>`);
 
+  // Semua video dari API
   for (const video of videos) {
     if (!video || !video.id) {
       continue;
     }
 
-    const url =
+    const videoUrl =
       SITE_URL +
       "/?video=" +
       encodeURIComponent(
@@ -76,13 +77,11 @@ function buildXml(videos) {
       );
 
     const lastmod =
-      formatLastmod(
-        video.createdAt
-      );
+      formatLastmod(video.createdAt);
 
     entries.push(`
   <url>
-    <loc>${escapeXml(url)}</loc>${lastmod ? `
+    <loc>${escapeXml(videoUrl)}</loc>${lastmod ? `
     <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -90,40 +89,35 @@ function buildXml(videos) {
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries.join("")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.join("")}
 </urlset>`;
 }
 
 export default {
   async fetch(request, env) {
-    const url =
-      new URL(request.url);
+    const url = new URL(request.url);
 
-    if (
-      url.pathname ===
-      "/sitemap.xml"
-    ) {
+    // Sitemap otomatis
+    if (url.pathname === "/sitemap.xml") {
       try {
         const videos =
-          await fetchVideos();
+          await fetchVideos(env);
 
         const xml =
           buildXml(videos);
 
-        return new Response(
-          xml,
-          {
-            status: 200,
-            headers: {
-              "Content-Type":
-                "application/xml; charset=UTF-8",
-              "Cache-Control":
-                "public, max-age=300",
-              "X-Robots-Tag":
-                "noindex"
-            }
+        return new Response(xml, {
+          status: 200,
+          headers: {
+            "Content-Type":
+              "application/xml; charset=UTF-8",
+
+            "Cache-Control":
+              "public, max-age=300"
           }
-        );
+        });
+
       } catch (error) {
         console.error(
           "Sitemap error:",
@@ -143,6 +137,7 @@ export default {
       }
     }
 
+    // Website normal
     return env.ASSETS.fetch(request);
   }
 };
