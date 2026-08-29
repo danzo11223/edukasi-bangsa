@@ -13,8 +13,10 @@ function escapeXml(value) {
     .replaceAll("'", "&apos;");
 }
 
-function validLastmod(value) {
-  if (!value) return "";
+function formatLastmod(value) {
+  if (!value) {
+    return "";
+  }
 
   const date = new Date(value);
 
@@ -25,31 +27,36 @@ function validLastmod(value) {
   return date.toISOString();
 }
 
-async function buildSitemap() {
+async function fetchVideos() {
   const response = await fetch(API_URL, {
+    method: "GET",
     headers: {
-      "Accept": "application/json"
-    },
-    cf: {
-      cacheTtl: 300,
-      cacheEverything: true
+      "Accept": "application/json",
+      "User-Agent": "Edukasi-Bangsa-Sitemap/1.0"
     }
   });
 
   if (!response.ok) {
+    const body =
+      await response.text();
+
     throw new Error(
-      `Video API error: ${response.status}`
+      `Video API error ${response.status}: ${body.slice(0, 200)}`
     );
   }
 
-  const data = await response.json();
+  const data =
+    await response.json();
 
-  const videos =
-    Array.isArray(data) ? data : [];
+  return Array.isArray(data)
+    ? data
+    : [];
+}
 
-  const urls = [];
+function buildXml(videos) {
+  const entries = [];
 
-  urls.push(`
+  entries.push(`
   <url>
     <loc>${escapeXml(SITE_URL + "/")}</loc>
     <changefreq>daily</changefreq>
@@ -61,7 +68,7 @@ async function buildSitemap() {
       continue;
     }
 
-    const videoUrl =
+    const url =
       SITE_URL +
       "/?video=" +
       encodeURIComponent(
@@ -69,11 +76,13 @@ async function buildSitemap() {
       );
 
     const lastmod =
-      validLastmod(video.createdAt);
+      formatLastmod(
+        video.createdAt
+      );
 
-    urls.push(`
+    entries.push(`
   <url>
-    <loc>${escapeXml(videoUrl)}</loc>${lastmod ? `
+    <loc>${escapeXml(url)}</loc>${lastmod ? `
     <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -81,7 +90,7 @@ async function buildSitemap() {
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join("")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries.join("")}
 </urlset>`;
 }
 
@@ -91,23 +100,30 @@ export default {
       new URL(request.url);
 
     if (
-      url.pathname === "/sitemap.xml"
+      url.pathname ===
+      "/sitemap.xml"
     ) {
       try {
-        const xml =
-          await buildSitemap();
+        const videos =
+          await fetchVideos();
 
-        return new Response(xml, {
-          status: 200,
-          headers: {
-            "Content-Type":
-              "application/xml; charset=UTF-8",
-            "Cache-Control":
-              "public, max-age=300",
-            "X-Content-Type-Options":
-              "nosniff"
+        const xml =
+          buildXml(videos);
+
+        return new Response(
+          xml,
+          {
+            status: 200,
+            headers: {
+              "Content-Type":
+                "application/xml; charset=UTF-8",
+              "Cache-Control":
+                "public, max-age=300",
+              "X-Robots-Tag":
+                "noindex"
+            }
           }
-        });
+        );
       } catch (error) {
         console.error(
           "Sitemap error:",
@@ -115,7 +131,7 @@ export default {
         );
 
         return new Response(
-          "Gagal membuat sitemap.",
+          `Gagal membuat sitemap.\n${error.message}`,
           {
             status: 500,
             headers: {
