@@ -3,6 +3,14 @@
   "name": "edukasi-bangsa",
   "main": "worker.js",
   "compatibility_date": "2026-08-29",
+
+  "services": [
+    {
+      "binding": "VIDEO_API",
+      "service": "edukasi-bangsa-api"
+    }
+  ],
+
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
