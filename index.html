@@ -4,15 +4,26 @@
   <meta name="google-site-verification" content="jCi7h_OYG14vP1QMCX6e7oCqdih338wECp-ekOpiAMU" />
   <title>EDUKASI BANGSA — Video, Informasi & Edukasi</title>
 
-<meta name="description" content="EDUKASI BANGSA menyajikan berbagai video, informasi, dan konten sensual terbaru update dalam satu tempat." />
+<meta id="metaDescription" name="description" content="EDUKASI BANGSA menyajikan berbagai video, informasi, dan konten terbaru dalam satu tempat." />
 
 <meta name="robots" content="index, follow" />
 
-<link rel="canonical" href="https://edukasi-bangsa.edukasiii.workers.dev/" />
+<link id="canonicalLink" rel="canonical" href="https://edukasi-bangsa.edukasiii.workers.dev/" />
+
+  <meta id="ogTitle" property="og:title" content="EDUKASI BANGSA — Video, Informasi & Edukasi" />
+  <meta id="ogDescription" property="og:description" content="EDUKASI BANGSA menyajikan berbagai video, informasi, dan konten terbaru dalam satu tempat." />
+  <meta id="ogUrl" property="og:url" content="https://edukasi-bangsa.edukasiii.workers.dev/" />
+  <meta id="ogImage" property="og:image" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="EDUKASI BANGSA" />
+  <meta id="twitterTitle" name="twitter:title" content="EDUKASI BANGSA — Video, Informasi & Edukasi" />
+  <meta id="twitterDescription" name="twitter:description" content="EDUKASI BANGSA menyajikan berbagai video, informasi, dan konten terbaru dalam satu tempat." />
+  <meta id="twitterImage" name="twitter:image" content="" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Edukasi Bangsa</title>
   <meta name="theme-color" content="#080808">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff2d8d'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial,sans-serif' font-size='27' font-weight='700' fill='white'%3EEB%3C/text%3E%3C/svg%3E">
 
@@ -1212,7 +1223,7 @@
               */
 
               window.location.href =
-                "?watch=" +
+                "?video=" +
                 encodeURIComponent(
                   video.id
                 );
@@ -1363,6 +1374,158 @@
     );
 
 
+
+    /* =============================================
+       SEO PER VIDEO
+    ============================================= */
+
+    function setMetaContent(selector, value) {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.setAttribute("content", value || "");
+      }
+    }
+
+    function updateVideoStructuredData(video) {
+      const oldScript =
+        document.getElementById("videoStructuredData");
+
+      if (oldScript) {
+        oldScript.remove();
+      }
+
+      const script =
+        document.createElement("script");
+
+      script.type =
+        "application/ld+json";
+
+      script.id =
+        "videoStructuredData";
+
+      const pageUrl =
+        window.location.origin +
+        window.location.pathname +
+        "?video=" +
+        encodeURIComponent(video.id);
+
+      const data = {
+        "@context":
+          "https://schema.org",
+        "@type":
+          "VideoObject",
+        "name":
+          video.title || "Video",
+        "description":
+          video.description ||
+          "Video dari EDUKASI BANGSA",
+        "thumbnailUrl":
+          video.thumbnail
+            ? [video.thumbnail]
+            : [],
+        "uploadDate":
+          video.createdAt || undefined,
+        "embedUrl":
+          video.embed || undefined,
+        "url":
+          pageUrl
+      };
+
+      script.textContent =
+        JSON.stringify(data);
+
+      document.head.appendChild(script);
+    }
+
+    function updateSeoForVideo(video) {
+      const baseUrl =
+        window.location.origin +
+        window.location.pathname;
+
+      const videoUrl =
+        baseUrl +
+        "?video=" +
+        encodeURIComponent(video.id);
+
+      const title =
+        (video.title || "Video") +
+        " - EDUKASI BANGSA";
+
+      const description =
+        (video.description ||
+          "Tonton video terbaru di EDUKASI BANGSA")
+          .trim()
+          .slice(0, 160);
+
+      document.title = title;
+
+      const canonical =
+        document.getElementById("canonicalLink");
+
+      if (canonical) {
+        canonical.href = videoUrl;
+      }
+
+      const metaDescription =
+        document.getElementById("metaDescription");
+
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          description
+        );
+      }
+
+      setMetaContent("#ogTitle", title);
+      setMetaContent("#ogDescription", description);
+      setMetaContent("#ogUrl", videoUrl);
+      setMetaContent("#ogImage", video.thumbnail || "");
+
+      setMetaContent("#twitterTitle", title);
+      setMetaContent("#twitterDescription", description);
+      setMetaContent("#twitterImage", video.thumbnail || "");
+
+      updateVideoStructuredData(video);
+    }
+
+    function resetHomeSeo() {
+      const baseUrl =
+        window.location.origin +
+        window.location.pathname;
+
+      const description =
+        "EDUKASI BANGSA menyajikan berbagai video, informasi, dan konten terbaru dalam satu tempat.";
+
+      document.title =
+        "EDUKASI BANGSA — Video, Informasi & Edukasi";
+
+      const canonical =
+        document.getElementById("canonicalLink");
+
+      if (canonical) {
+        canonical.href = baseUrl;
+      }
+
+      const metaDescription =
+        document.getElementById("metaDescription");
+
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          description
+        );
+      }
+
+      setMetaContent("#ogTitle", document.title);
+      setMetaContent("#ogDescription", description);
+      setMetaContent("#ogUrl", baseUrl);
+      setMetaContent("#ogImage", "");
+
+      setMetaContent("#twitterTitle", document.title);
+      setMetaContent("#twitterDescription", description);
+      setMetaContent("#twitterImage", "");
+    }
+
     /* =============================================
        OPEN WATCH PAGE DARI URL
     ============================================= */
@@ -1376,6 +1539,7 @@
 
 
       const id =
+        params.get("video") ||
         params.get("watch");
 
 
@@ -1392,6 +1556,7 @@
         ).style.display =
           "none";
 
+        resetHomeSeo();
 
         return;
 
@@ -1453,9 +1618,7 @@
         "";
 
 
-      document.title =
-        (selected.title || "Video") +
-        " - Edukasi Bangsa";
+      updateSeoForVideo(selected);
 
       loadViewCount();
       registerView();
