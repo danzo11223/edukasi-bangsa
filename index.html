@@ -444,13 +444,21 @@
       background: black;
     }
 
-    .player-container video {
+    .player-container video,
+    .player-container iframe {
       width: 100%;
-      max-height: 75vh;
-
       display: block;
-
       background: black;
+    }
+
+    .player-container video {
+      max-height: 75vh;
+    }
+
+    .player-container iframe {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border: 0;
     }
 
     .watch-info {
@@ -1045,6 +1053,15 @@
           playsinline>
         </video>
 
+        <iframe
+          id="bunnyPlayer"
+          src=""
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen
+          loading="eager"
+          style="display:none;">
+        </iframe>
+
       </div>
 
 
@@ -1238,6 +1255,9 @@
 
     const videoPlayer =
       document.getElementById("videoPlayer");
+
+    const bunnyPlayer =
+      document.getElementById("bunnyPlayer");
 
     const viewCount =
       document.getElementById("viewCount");
@@ -1708,26 +1728,42 @@
         "block";
 
 
+      const embedUrl =
+        getEmbedSource(selected);
+
       const sourceUrl =
         getVideoSource(selected);
 
-      if (!sourceUrl) {
+      hidePlayerError();
 
-        showPlayerError(
-          "Link video tidak tersedia."
-        );
+      videoPlayer.pause();
+      videoPlayer.removeAttribute("src");
+      videoPlayer.style.display = "none";
+
+      bunnyPlayer.src = "";
+      bunnyPlayer.style.display = "none";
+
+      if (embedUrl) {
+
+        bunnyPlayer.src =
+          embedUrl;
+
+        bunnyPlayer.style.display =
+          "block";
+
+        /*
+          Bunny iframe tidak meneruskan event "play"
+          ke elemen <video> halaman ini.
+          View dicatat saat halaman player Bunny dibuka.
+        */
+        registerView();
 
       }
 
-      else {
+      else if (sourceUrl) {
 
-        hidePlayerError();
-
-        videoPlayer.pause();
-
-        videoPlayer.removeAttribute(
-          "src"
-        );
+        videoPlayer.style.display =
+          "block";
 
         videoPlayer.src =
           sourceUrl;
@@ -1739,6 +1775,14 @@
           "metadata";
 
         videoPlayer.load();
+
+      }
+
+      else {
+
+        showPlayerError(
+          "Link video tidak tersedia."
+        );
 
       }
 
@@ -1786,6 +1830,27 @@
     /* =============================================
        PLAYER + VIEW COUNTER GLOBAL
     ============================================= */
+
+    function getEmbedSource(video) {
+
+      if (!video) {
+        return "";
+      }
+
+      const value =
+        String(video.embed || "").trim();
+
+      if (
+        value.startsWith(
+          "https://iframe.mediadelivery.net/"
+        )
+      ) {
+        return value;
+      }
+
+      return "";
+    }
+
 
     function getVideoSource(video) {
 
